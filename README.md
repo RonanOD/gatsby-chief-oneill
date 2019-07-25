@@ -1,3 +1,5 @@
+[![Netlify Status](https://api.netlify.com/api/v1/badges/87da1b18-7f0d-46e0-a0bd-3b9861dec5c6/deploy-status)](https://app.netlify.com/sites/cranky-heyrovsky-a6c374/deploys)
+
 # Gatsby v2 WordPress Starter
 
 This starter is forked from the
