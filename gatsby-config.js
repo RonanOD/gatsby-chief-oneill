@@ -1,12 +1,14 @@
 require("dotenv").config({
   path: '.env'
 })
+const path = require(`path`)
 module.exports = {
   siteMetadata: {
     title: 'Gatsby + WordPress Starter',
   },
   plugins: [
     'gatsby-plugin-react-helmet',
+    `gatsby-plugin-styled-components`,
     'gatsby-plugin-sass',
     {
       resolve: 'gatsby-source-wordpress',
@@ -22,6 +24,14 @@ module.exports = {
         auth: {},
         // Set to true to debug endpoints on 'gatsby build'
         verboseOutput: false,
+      },
+    },
+    'gatsby-background-image',
+    {
+      resolve: `gatsby-source-filesystem`,
+      options: {
+        name: `images`,
+        path: path.join(__dirname, `src`, `img`),
       },
     },
     'gatsby-plugin-sharp',
