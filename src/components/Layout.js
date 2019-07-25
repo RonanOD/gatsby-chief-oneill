@@ -10,6 +10,9 @@ const TemplateWrapper = ({ children }) => (
     <StyledBackgroundSection className="bg-image"/>
     <Navbar />
     <div>{children}</div>
+    <footer class="footer" role="contentinfo">
+			<div class="content has-text-centered">Copyright © 2019 <a href="http://chiefoneill.com/"> Chief O'Neill</a></div>
+		</footer>
   </div>
 )
 
