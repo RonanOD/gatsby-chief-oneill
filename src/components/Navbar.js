@@ -20,7 +20,7 @@ const Navbar = () => (
       }
     `}
     render={data => (
-      <nav className="navbar is-transparent">
+      <nav className="navbar is-light">
         <div className="container">
           <div className="navbar-brand">
             <Link to="/" className="navbar-item">
