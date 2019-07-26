@@ -11,7 +11,7 @@ exports.createPages = ({ actions, graphql }) => {
 
   return graphql(`
     {
-      allWordpressPage {
+      allWordpressPage(filter: {slug: {ne:"contact"}}) {
         edges {
           node {
             id
