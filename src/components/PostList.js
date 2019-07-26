@@ -18,27 +18,36 @@ export default class IndexPage extends React.Component {
               style={{ border: '1px solid #eaecee', padding: '2em 4em', background: 'white' }}
               key={post.id}
             >
-              <p>
-                <Link className="has-text-primary" to={post.slug} dangerouslySetInnerHTML={{__html:post.title}}>
-                </Link>
-                <span> &bull; </span>
-                <small>
-                  {post.date} - posted by{' '}
-                  <Link to={`/author/${post.author.slug}`}>
-                    {post.author.name}
+              <article className="media" style={{display:'flex'}}>
+                <figure className="media-left" style={{flex: '0 0 256px'}}>
+                  <Link to={post.slug} className="image is-256x256">
+                    <img src={post.featured_media ? post.featured_media.source_url : ""}/>
                   </Link>
-                </small>
-              </p>
-              <div>
-                <div
-                  dangerouslySetInnerHTML={{
-                    __html: post.excerpt.replace(/<p class="link-more.*/, ''),
-                  }}
-                />
-                <Link className="button is-small" to={post.slug}>
-                  Keep Reading →
-                </Link>
-              </div>
+                </figure>
+                <div className="media-content">
+                  <div className="content">
+                    <p>
+                      <Link className="has-text-primary" to={post.slug} dangerouslySetInnerHTML={{__html:post.title}}>
+                      </Link>
+                      <span> &bull; </span>
+                      <small>
+                        {post.date} - posted by{' '}
+                        <Link to={`/author/${post.author.slug}`}>
+                          {post.author.name}
+                        </Link>
+                      </small>
+                    </p>
+                    <p
+                        dangerouslySetInnerHTML={{
+                          __html: post.excerpt.replace(/<p class="link-more.*/, ''),
+                        }}
+                    ></p>
+                    <Link className="button is-small" to={post.slug}>
+                        Keep Reading →
+                    </Link>
+                  </div>
+                </div>
+              </article>
             </div>
           ))}
         </div>
@@ -66,5 +75,9 @@ export const pageQuery = graphql`
     }
     date(formatString: "MMMM DD, YYYY")
     slug
+    featured_media{
+      link
+      source_url
+    }
   }
 `
