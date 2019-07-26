@@ -8,7 +8,7 @@ const getOnlyPublished = edges =>
 
 exports.createPages = ({ actions, graphql }) => {
   const { createPage } = actions
-
+  // Filter out contact page to replace with netlify version.
   return graphql(`
     {
       allWordpressPage(filter: {slug: {ne:"contact"}}) {

@@ -29,7 +29,7 @@ $link: $kaldi-red
   position: unset !important;
 
 .section .columns
-  background: $off-white
+  background-color: $off-white
 
 .pagination .navbar
 	justify-content: center
@@ -52,3 +52,11 @@ $link: $kaldi-red
   margin-top: 0 !important
 
 @import "~bulma"
+
+// Overrides to bulma
+.image
+  img
+    width: unset;
+
+.section--gradient
+  background-color: lightgray
