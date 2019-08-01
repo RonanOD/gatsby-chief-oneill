@@ -1,6 +1,7 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 import { Link, graphql } from 'gatsby'
+import ArchiveList from './ArchiveList'
 
 export default class IndexPage extends React.Component {
   render() {
@@ -8,10 +9,10 @@ export default class IndexPage extends React.Component {
 
     return (
       <div className="columns">
-        <div className="column is-narrow" style={{flexBasis: 'auto'}}>
-          <div className="box container" style={{width: '200px'}}>
+        <div className="column is-narrow" style={{flexBasis: 'auto', paddingTop: '8rem', paddingLeft: '3rem'}}>
+          <div className="box container" style={{width: '300px'}}>
             <p className="title is-5">Archive</p>
-            <p className="subtitle">This column is only 200px wide.</p>
+            <ArchiveList/>
           </div>
         </div>
         <div className="column" style={{flexBasis: 'auto'}}>
