@@ -4,7 +4,19 @@ require("dotenv").config({
 const path = require(`path`)
 module.exports = {
   siteMetadata: {
-    title: "Chief O'Neill",
+    title: `Chief O'Neill`,
+    description: `Blog about Francis O'Neill: The Chicago Police Chief Who Saved Irish Music`,
+    author: `@ronanodriscoll`,
+    social: [
+      {
+          name: 'twitter',
+          url: 'https://twitter.com/ronanodriscoll',
+      },
+      {
+        name: `github`,
+        url: `https://github.com/RonanOD`,
+      },
+    ],
   },
   plugins: [
     'gatsby-plugin-react-helmet',
