@@ -64,6 +64,7 @@ exports.createPages = ({ actions, graphql }) => {
                 status
                 date_title: date(formatString: "MMMM, YYYY")
                 date_url: date(formatString: "YYYY/MM")
+                date
               }
             }
           }
@@ -107,10 +108,19 @@ exports.createPages = ({ actions, graphql }) => {
         component: blogTemplate,
       })
 
+      const monthTemplate = path.resolve(`./src/templates/month.js`)
+
       // Create landing page for each month.
       const byDatePosts = filterEdgesByDateTitle(posts);
       _.each(byDatePosts, ({ node: post }) => {
-        console.log(`XXXX ${post.date_url}`);
+        createPage({
+          path: `/${post.date_url}/`,
+          component: monthTemplate,
+          context: {
+            name: post.date_title,
+            slug: post.date,
+          },
+        })
       })
     })
     .then(() => {
