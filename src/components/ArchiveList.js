@@ -1,6 +1,7 @@
 import React from 'react';
 import {graphql, StaticQuery, Link} from 'gatsby';
 import styled from 'styled-components';
+const filterEdgesByDateTitle = require('../utils/helperFunctions');
 
 // Styled components work with any 3rd party React component
 const ArchiveItem = styled(Link)`
@@ -25,7 +26,7 @@ const ArchiveList = () => (
   }
   `} render={props => (
       <div>
-        {filterEdges(props.allWordpressPost.edges).map(edge => (
+        {filterEdgesByDateTitle(props.allWordpressPost.edges).map(edge => (
           <ArchiveItem to={`/${edge.node.date_url}`} key={edge.node.id}>
             {edge.node.date_title}
           </ArchiveItem>
@@ -33,17 +34,5 @@ const ArchiveList = () => (
       </div>
   )}/>   
 )
-
-const filterEdges = (edges) => {
-  let filterObj = {};
-  let uniqueNodes = [];
-  edges.forEach(edge => {
-    if(!filterObj[edge.node.date_title]) {
-      filterObj[edge.node.date_title] = true;
-      uniqueNodes.push(edge);
-    }
-  });
-  return uniqueNodes;
-}
 
 export default ArchiveList;

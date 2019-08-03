@@ -3,6 +3,8 @@ const path = require('path')
 const { createFilePath } = require('gatsby-source-filesystem')
 const { paginate } = require('gatsby-awesome-pagination')
 
+const filterEdgesByDateTitle = require('./src/utils/helperFunctions');
+
 const getOnlyPublished = edges =>
   _.filter(edges, ({ node }) => node.status === 'publish')
 
@@ -60,6 +62,8 @@ exports.createPages = ({ actions, graphql }) => {
                 id
                 slug
                 status
+                date_title: date(formatString: "MMMM, YYYY")
+                date_url: date(formatString: "YYYY/MM")
               }
             }
           }
@@ -101,6 +105,12 @@ exports.createPages = ({ actions, graphql }) => {
         itemsPerPage: 10,
         pathPrefix: ({ pageNumber }) => (pageNumber === 0 ? `/` : `/page`),
         component: blogTemplate,
+      })
+
+      // Create landing page for each month.
+      const byDatePosts = filterEdgesByDateTitle(posts);
+      _.each(byDatePosts, ({ node: post }) => {
+        console.log(`XXXX ${post.date_url}`);
       })
     })
     .then(() => {
