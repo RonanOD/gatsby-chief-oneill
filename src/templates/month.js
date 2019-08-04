@@ -24,13 +24,13 @@ const Month = props => {
 export default Month
 
 export const pageQuery = graphql`
-  query MonthPage($slug: String!) {
+  query MonthPage($monStart: Date!, $monEnd: Date!) {
     site {
       siteMetadata {
         title
       }
     }
-    allWordpressPost(filter: { categories: {elemMatch: { slug: { eq: $slug }}}} ) {
+    allWordpressPost(filter: {date: {lte: $monEnd, gte: $monStart}} ) {
       totalCount
       edges {
         node {

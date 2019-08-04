@@ -64,6 +64,7 @@ exports.createPages = ({ actions, graphql }) => {
                 status
                 date_title: date(formatString: "MMMM, YYYY")
                 date_url: date(formatString: "YYYY/MM")
+                date_start: date(formatString: "YYYY-MM")
                 date
               }
             }
@@ -113,12 +114,16 @@ exports.createPages = ({ actions, graphql }) => {
       // Create landing page for each month.
       const byDatePosts = filterEdgesByDateTitle(posts);
       _.each(byDatePosts, ({ node: post }) => {
+        // make a date object and figure out month and year before and pass that through.
+        const month = new Date(post.date_start+ "-01"); //Timezone is UTC.
+        const lastDayOfMonth = new Date(month.getFullYear(), month.getMonth() + 2, 0)
         createPage({
           path: `/${post.date_url}/`,
           component: monthTemplate,
           context: {
             name: post.date_title,
-            slug: post.date,
+            monStart: month.toISOString(),
+            monEnd: lastDayOfMonth.toISOString()
           },
         })
       })
